@@ -21,8 +21,13 @@ def style_background_dashboard():
     st.markdown("""   
          <style>
                 .stApp{
-                     background: #5865F2 !important;
+                     background: #F2BDCD !important;
                 }
+                  
+             h2{
+              font-family: 'Luckiest Guy', cursive !important;   
+             }
+
 
 
         </style>
