@@ -5,7 +5,7 @@ from sklearn.svm import SVC
 import streamlit as st
 from src.database.db import get_all_students
 
-@st.cache_resources
+@st.cache_resource
 def load_dlib_models():
     detector = dlib.get_frontal_face_detector()
 
@@ -71,7 +71,7 @@ def predict_attendence(class_image_np):
 
     for encoding in encodings:
         if len(all_students)>=2:
-            predicted_id= int(clf.predict([encodings])[0])
+            predicted_id= int(clf.predict([encoding])[0])
         else:
             predicted_id= int(all_students[0])
 
@@ -81,5 +81,5 @@ def predict_attendence(class_image_np):
         if best_match_score <= resemblance_threshold:
             detected_student[predicted_id] = True
 
-    return detected_student, all_students, len(encoding)
+    return detected_student, all_students, len(encodings)
     

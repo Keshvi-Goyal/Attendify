@@ -19,7 +19,43 @@ def teacher_screen():
         
 def teacher_dashboard():
   teacher_data = st.session_state.teacher_data
-  st.header(f"""Welcome, {teacher_data['name']}  """)
+  c1, c2 = st.columns(2, vertical_alignment='center', gap='xxlarge')
+  with c1:
+   header_dashboard()
+  with c2:   
+   st.subheader(f"""Welcome, {teacher_data['name']}  """)
+   if st.button("Logout", type='secondary', key='loginbackbtn', shortcut="control+backspace"):
+      st.session_state['is_logged_in']
+      del st.session_state.teacher_data
+      st.rerun()
+
+  st.space()
+
+  if 'current_teacher_tab' not in st.session_state:
+    st.session_state.current_teacher_tab = 'take_attendence'
+
+  tab1, tab2, tab3 = st.columns(3)
+
+  with tab1:
+    if st.button('Take Attendence', width='stretch', icon=':material/ar_on_you:'):
+      st.session_state.current_teacher_tab = 'take_attendence'
+      st.rerun()
+
+  with tab2:
+    if st.button('Take Attendence', width='stretch', icon=':material/ar_on_you:'):
+      st.session_state.current_teacher_tab = 'take_attendence'
+      st.rerun()
+
+  with tab3:
+    if st.button('Take Attendence', width='stretch', icon=':material/ar_on_you:'):
+      st.session_state.current_teacher_tab = 'take_attendence'
+      st.rerun()        
+
+
+
+
+  footer_dashboard()
+  
 
 def login_teacher(username, password):
   if not username or not password:
