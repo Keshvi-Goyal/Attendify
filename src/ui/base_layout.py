@@ -42,9 +42,9 @@ def style_base_layout():
 
                 @import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Outfit:wght@100..900&display=swap');    
 
-          #MainMenu, footer, header{
-            visibility: hidden;
-            }     
+         # #MainMenu, footer, header{
+         #   visibility: hidden;
+         #   }     
 
         .block-container {
            padding-top: 0.5rem !important;

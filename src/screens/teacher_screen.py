@@ -37,24 +37,49 @@ def teacher_dashboard():
   tab1, tab2, tab3 = st.columns(3)
 
   with tab1:
-    if st.button('Take Attendence', width='stretch', icon=':material/ar_on_you:'):
+    type1 = "primary" if st.session_state.current_teacher_tab == 'take_attendence' else "tertiary"
+    if st.button('Take Attendence', type = type1,  width='stretch', icon=':material/ar_on_you:'):
       st.session_state.current_teacher_tab = 'take_attendence'
       st.rerun()
 
   with tab2:
-    if st.button('Take Attendence', width='stretch', icon=':material/ar_on_you:'):
-      st.session_state.current_teacher_tab = 'take_attendence'
+    type2 = "primary" if st.session_state.current_teacher_tab == 'manage_subjects' else "tertiary"
+    if st.button('Manage Subjects',type = type2,  width='stretch', icon=':material/book_ribbon:'):
+      st.session_state.current_teacher_tab = 'manage_subjects'
       st.rerun()
 
   with tab3:
-    if st.button('Take Attendence', width='stretch', icon=':material/ar_on_you:'):
-      st.session_state.current_teacher_tab = 'take_attendence'
-      st.rerun()        
+    type3 = "primary" if st.session_state.current_teacher_tab == 'attendence_records' else "tertiary"
+      
+    if st.button('Attendence Records', type = type3,  width='stretch', icon=':material/cards_stack:'):
+      st.session_state.current_teacher_tab = 'attendence_records'
+      st.rerun()     
 
+  if st.session_state.current_teacher_tab == 'take_attendence':
+    teacher_tab_take_attendence() 
 
+  if st.session_state.current_teacher_tab == 'manage_subjects':
+    teacher_tab_manage_subjects()    
 
+  if st.session_state.current_teacher_tab == 'attendence_records':
+    teacher_tab_attendence_records()   
 
   footer_dashboard()
+
+def  teacher_tab_take_attendence():
+  st.header("Take AI Attendence")
+
+def  teacher_tab_manage_subjects():
+  teacher_id = st.session_state.teacher_data['teacher_id']
+  col1, col2 = st.columns(2)
+  with col1:
+    st.header("Manage Subjects", width = 'stretch')
+  with col2:
+    if st.button("Create New Subject", width = 'stretch'):
+      create_subject_dialog(teacher_id)
+
+def  teacher_tab_attendence_records():
+  st.header("Attendence Records")
   
 
 def login_teacher(username, password):
